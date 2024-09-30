@@ -1,3 +1,4 @@
 trash/
 venv/
 Dataset/
+ham10000_model.pth
