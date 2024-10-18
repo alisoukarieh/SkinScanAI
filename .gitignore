@@ -1,4 +1,9 @@
 trash/
 venv/
-Dataset/
-ham10000_model.pth
+Images/
+backup/
+label_mapping.pkl
+localization_mapping.pkl
+sex_mapping.pkl
+train.csv
+val.csv
