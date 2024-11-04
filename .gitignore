@@ -1,9 +1,19 @@
-trash/
-venv/
-Images/
-backup/
-label_mapping.pkl
-localization_mapping.pkl
-sex_mapping.pkl
-train.csv
-val.csv
+# AI-model directory
+/AI-model/Images
+/AI-model/venv/
+
+# AI-model draft directory
+/AI-model-draft/
+
+# backend directory
+/backend/venv/
+
+# frontend directory
+/frontend/node_modules/
+/frontend/build/
+/frontend/.next/
+
+/frontend/.env
+/frontend/.DS_Store
+/frontend/.eslintcache
+/frontend/coverage/
