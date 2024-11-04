@@ -1,0 +1,7 @@
+# AI-model directory
+/Images/
+/venv/
+/logs/
+/models/
+/SkinScanAI_DensNet121_88.22.pkl
+/__pycache__/
