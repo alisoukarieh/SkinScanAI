@@ -31,9 +31,6 @@ import axios from "axios";
 
 export function Page() {
   const [image, setImage] = useState<File | null>(null);
-  const [age, setAge] = useState("");
-  const [sex, setSex] = useState("");
-  const [placement, setPlacement] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
 
@@ -58,7 +55,7 @@ export function Page() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/predict",
+        `${process.env.NEXT_PUBLIC_API_URL}/predict`,
         formData,
         {
           headers: {
