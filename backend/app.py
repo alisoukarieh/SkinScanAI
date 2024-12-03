@@ -9,7 +9,9 @@ from torchvision import models, transforms
 from PIL import Image
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://skinscanai.onrender.com"}})
+
+# Explicitly configure CORS to handle specific origins or all origins
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Define the transformer once
 transform = transforms.Compose([
@@ -24,8 +26,25 @@ model.classifier = nn.Linear(model.classifier.in_features, 2)
 model.load_state_dict(torch.load(model_path))
 model.eval()
 
-@app.route('/predict', methods=['POST'])
+# Add a function to handle CORS headers for all responses
+@app.after_request
+def add_cors_headers(response):
+    origin = request.headers.get("Origin")
+    response.headers["Access-Control-Allow-Origin"] = origin if origin else "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    return response
+
+@app.route('/predict', methods=['POST', 'OPTIONS'])
 def predict():
+    # Handle preflight OPTIONS request
+    if request.method == 'OPTIONS':
+        response = jsonify({"message": "Preflight"})
+        response.status_code = 200
+        return response
+    
+    # Handle POST request
     if 'image' not in request.files:
         return jsonify({'error': 'No image file provided.'}), 400
     file = request.files['image']
