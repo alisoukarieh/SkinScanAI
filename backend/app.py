@@ -9,7 +9,7 @@ from torchvision import models, transforms
 from PIL import Image
 
 app = Flask(__name__)
-CORS(app) 
+CORS(app, resources={r"/*": {"origins": "https://skinscanai.onrender.com"}})
 
 # Define the transformer once
 transform = transforms.Compose([
