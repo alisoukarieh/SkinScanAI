@@ -55,7 +55,7 @@ export function Page() {
 
     try {
       const response = await axios.post(
-        "https://9bd8-2a01-cb00-b6c-3300-8c12-6be6-5b7-2b4.ngrok-free.app/predict",
+        `${process.env.NEXT_PUBLIC_API_URL}/predict`,
         formData,
         {
           headers: {
