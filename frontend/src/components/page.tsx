@@ -55,7 +55,7 @@ export function Page() {
 
     try {
 const response = await axios.post(
-        "https://skinscanai-2wpm.onrender.com/predict",
+        "https://4450-134-157-254-7.ngrok-free.app/predict",
         formData,
         {
           headers: {
