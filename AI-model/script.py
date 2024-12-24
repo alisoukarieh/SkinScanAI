@@ -37,7 +37,7 @@ def validate(model, dataloader, criterion, device):
     total = 0
     with torch.no_grad():
         for images, labels in dataloader:
-            images, labels = images.to(device), labels.to(device)  # Move to device
+            images, labels = images.to(device), labels.to(device)  
             outputs = model(images)
             loss = criterion(outputs, labels)
             val_loss += loss.item()
@@ -56,11 +56,11 @@ def test(model, dataloader, device):
     all_labels = []
     with torch.no_grad():
         for images, labels in dataloader:
-            images, labels = images.to(device), labels.to(device)  # Move to device
+            images, labels = images.to(device), labels.to(device)  
             outputs = model(images)
             _, preds = torch.max(outputs, 1)
-            all_preds.extend(preds.cpu().numpy())    # Move preds back to CPU for numpy
-            all_labels.extend(labels.cpu().numpy())  # Move labels back to CPU for numpy
+            all_preds.extend(preds.cpu().numpy())   
+            all_labels.extend(labels.cpu().numpy())  
             correct += (preds == labels).sum().item()
             total += labels.size(0)
     test_accuracy = correct / total
@@ -199,7 +199,7 @@ def compare_models(num_epochs=5):
     if not os.path.exists('logs'):
         os.makedirs('logs')
     if not os.path.exists('models'):
-        os.makedirs('models')  # Create 'models' directory to save trained models
+        os.makedirs('models')  
 
     for model_name in model_names:
         print(f'\nTraining model: {model_name}')
@@ -241,7 +241,7 @@ def compare_models(num_epochs=5):
             model.train()
             running_loss = 0
             for images, labels in train_loader:
-                images, labels = images.to(device), labels.to(device)  # Move to device
+                images, labels = images.to(device), labels.to(device)
                 optimizer.zero_grad()
                 outputs = model(images)
                 loss = criterion(outputs, labels)
